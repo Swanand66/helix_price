@@ -34,16 +34,6 @@
     "output": 10,
     "cachedInput": 0.2
   },
-  "fable": {
-    "provider": "fable",
-    "input": 2,
-    "output": 10
-  },
-  "fable-mini": {
-    "provider": "fable",
-    "input": 0.3,
-    "output": 1.2
-  },
   "gemini-2.5-flash": {
     "provider": "google",
     "input": 0.3,
