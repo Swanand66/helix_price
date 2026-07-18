@@ -1,0 +1,11 @@
+{
+  "name": "helix-price",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Auto-updated pricing table for the Helix browser extension.",
+  "scripts": {
+    "refresh": "node scripts/scrape-prices.mjs"
+  },
+  "license": "MIT"
+}

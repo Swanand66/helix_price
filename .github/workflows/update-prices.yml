@@ -1,0 +1,42 @@
+name: Refresh prices
+
+on:
+  schedule:
+    # 06:00 UTC every day. Change if you prefer a different window.
+    - cron: "0 6 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-prices
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Scrape upstream and rewrite prices.json
+        run: node scripts/scrape-prices.mjs
+
+      - name: Commit and push if there are changes
+        run: |
+          if [[ -n "$(git status --porcelain prices.json)" ]]; then
+            git config user.name  "helix-price-bot"
+            git config user.email "helix-price-bot@users.noreply.github.com"
+            git add prices.json
+            git commit -m "chore: daily price refresh $(date -u +%Y-%m-%d)"
+            git push
+            echo "::notice::prices.json updated and pushed"
+          else
+            echo "::notice::no price changes today"
+          fi
