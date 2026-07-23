@@ -1,6 +1,6 @@
 {
   "$comment": "Helix — daily-refreshable pricing table. Host this file at a public HTTPS URL (e.g. GitHub raw content) and point PRICES_URL in apps/extension/background.js at it. The extension fetches it once per day and merges over the bundled fallback prices. Values are USD per 1M tokens. Every entry must have `provider`, `input`, `output`. `cachedInput` is optional.",
-  "$version": "2026-07-22",
+  "$version": "2026-07-23",
   "$source": "LiteLLM community pricing (auto-refreshed daily)",
   "$upstream": "https://raw.githubusercontent.com/BerriAI/litellm/main/litellm/model_prices_and_context_window_backup.json",
   "claude-4.5-haiku": {
